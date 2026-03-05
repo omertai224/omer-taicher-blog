@@ -1,9 +1,10 @@
+<!-- repo: omer-taicher-blog | קובץ: index.html -->
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>עומר טייכר — הבלוג</title>
+<title>עומר טייכר · הבלוג</title>
 <meta name="description" content="טיפים פשוטים לטכנולוגיה יומיומית. מחשבים, סמארטפונים ואינטרנט — בשפה ברורה.">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -249,7 +250,7 @@ footer {
 <body>
 
 <nav>
-  <a href="/" class="logo">עומר <span>טייכר</span></a>
+  <a href="/" class="logo">עומר <span>טייכר</span> <span style="font-weight:400;color:rgba(255,255,255,0.45);font-size:0.9rem">· הבלוג</span></a>
   <a href="https://omer.tips" class="nav-cta">📞 צור קשר</a>
 </nav>
 
@@ -333,8 +334,8 @@ function loadMore() {
   const list = document.getElementById('posts-list');
   const remaining = allPosts.slice(displayedCount + 1, displayedCount + 1 + POSTS_PER_PAGE);
   remaining.forEach((post, i) => {
-    const globalIndex = displayedCount + i;
-    const colorClass = globalIndex % 2 === 0 ? 'orange' : 'blue';
+    const isLast = (i === remaining.length - 1);
+    const colorClass = isLast ? 'blue' : (i % 2 === 0 ? 'orange' : 'blue');
     list.insertAdjacentHTML('beforeend', renderPostRow(post, displayedCount + i, colorClass));
   });
   displayedCount += remaining.length;
@@ -366,7 +367,8 @@ async function init() {
     const list = document.getElementById('posts-list');
     const firstBatch = allPosts.slice(1, 1 + POSTS_PER_PAGE);
     firstBatch.forEach((post, i) => {
-      const colorClass = i % 2 === 0 ? 'orange' : 'blue';
+      const isLast = (i === firstBatch.length - 1);
+      const colorClass = isLast ? 'blue' : (i % 2 === 0 ? 'orange' : 'blue');
       list.insertAdjacentHTML('beforeend', renderPostRow(post, i, colorClass));
     });
     displayedCount = firstBatch.length;
