@@ -268,7 +268,7 @@ async function init() {
 
     // Image/emoji
     const imgContent = post.image
-      ? `<img src="${post.image}" alt="${post.title}">`
+      ? `<img src="${post.image}" alt="${post.image_alt || post.title}">`
       : `<span style="position:relative;z-index:1">${post.emoji}</span>`;
 
     // Prev/Next nav
