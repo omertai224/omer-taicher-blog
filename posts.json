@@ -1,18 +1,6 @@
 {
   "posts": [
     {
-      "id": "טאטאט",
-      "title": "טאטאט",
-      "excerpt": "טאטאטא",
-      "body": "חיחעיחעי",
-      "date": "2026-03-05",
-      "emoji": "",
-      "image": "https://res.cloudinary.com/drxyfq0cq/image/upload/v1772791143/dlcgbt0tqy2dlyjhv3f2.jpg",
-      "image_alt": "",
-      "seo_title": "טאטאט | עומר טייכר",
-      "seo_desc": "טאטאטא"
-    },
-    {
       "id": "chatgpt-not-only-for-young",
       "title": "ChatGPT לא נועד רק לצעירים",
       "excerpt": "שלושה שימושים פשוטים שאנשים בכל גיל כבר מיישמים. בלי קורסים, בלי ידע טכני — רק לפתוח ולהתחיל.",
