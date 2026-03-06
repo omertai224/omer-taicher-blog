@@ -293,7 +293,7 @@ function formatDate(dateStr) {
 
 function renderHero(post) {
   const imgContent = post.image
-    ? `<img src="${post.image}" alt="${post.title}">`
+    ? `<img src="${post.image}" alt="${post.image_alt || post.title}">`
     : post.emoji;
   document.getElementById('hero-container').innerHTML = `
     <a class="hero" href="post.html?id=${post.id}">
@@ -313,7 +313,7 @@ function renderHero(post) {
 
 function renderPostRow(post, index, colorClass) {
   const imgContent = post.image
-    ? `<img src="${post.image}" alt="${post.title}">`
+    ? `<img src="${post.image}" alt="${post.image_alt || post.title}">`
     : post.emoji;
   return `
     <a class="post-row ${colorClass}" href="post.html?id=${post.id}">
