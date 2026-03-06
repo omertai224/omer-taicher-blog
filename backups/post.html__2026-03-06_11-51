@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">עומר טייכר — הבלוג</title>
+<meta name="description" id="page-desc" content="">
+<!-- Open Graph -->
+<meta property="og:type"        content="article" id="og-type">
+<meta property="og:site_name"   content="עומר טייכר — הבלוג">
+<meta property="og:title"       content="" id="og-title">
+<meta property="og:description" content="" id="og-desc">
+<meta property="og:url"         content="" id="og-url">
+<meta property="og:image"       content="" id="og-image">
+<meta property="og:locale"      content="he_IL">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --orange: #e8854a;
+  --orange-deep: #c96a2a;
+  --orange-bg: #c96a2a;
+  --navy: #0d1f35;
+  --navy2: #142030;
+  --mid-dark: rgba(255,255,255,0.55);
+  --border-dark: rgba(255,255,255,0.09);
+  --border-orange: rgba(255,255,255,0.15);
+}
+body { font-family:'Rubik',sans-serif; background:var(--navy); color:#fff; direction:rtl; }
+
+/* NAV */
+nav {
+  padding:18px 60px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--border-dark);
+  position:sticky; top:0;
+  background:rgba(13,31,53,0.97);
+  backdrop-filter:blur(12px); z-index:100;
+}
+.logo { font-size:1.1rem; font-weight:800; color:#fff; text-decoration:none; }
+.logo span { color:var(--orange); }
+.nav-back {
+  color:rgba(255,255,255,0.6); font-size:0.85rem; font-weight:500;
+  text-decoration:none; display:flex; align-items:center; gap:8px;
+  transition:color 0.2s;
+}
+.nav-back:hover { color:#fff; }
+
+/* POST HEADER */
+.post-header {
+  background:var(--navy2);
+  padding:60px 60px 48px;
+  border-bottom:1px solid var(--border-dark);
+  max-width:760px;
+  margin:0 auto;
+}
+.post-label {
+  font-size:0.65rem; font-weight:700; letter-spacing:0.2em;
+  color:var(--orange); text-transform:uppercase; margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+}
+.post-label::before { content:''; width:28px; height:2px; background:var(--orange); display:block; }
+.post-header h1 {
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:900; line-height:1.2; color:#fff;
+  margin-bottom:20px; letter-spacing:-0.02em;
+}
+.post-header .excerpt {
+  font-size:1rem; color:var(--mid-dark); line-height:1.75;
+  margin-bottom:28px;
+}
+.post-meta {
+  padding-top:24px;
+  border-top:1px solid var(--border-dark);
+  display:flex; align-items:center; gap:16px;
+  font-size:0.78rem; color:var(--mid-dark);
+}
+.post-meta strong { color:#fff; }
+
+/* POST IMAGE */
+.post-image-wrap {
+  background:var(--navy2);
+  padding:0 60px 48px;
+  border-bottom:1px solid var(--border-dark);
+  max-width:760px;
+  margin:0 auto;
+}
+.post-image-box {
+  border-radius:16px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  font-size:8rem;
+  min-height:280px;
+  background:linear-gradient(135deg,#0d1f35,#1a3a5c);
+  position:relative;
+}
+.post-image-box::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 40% 40%, rgba(232,133,74,0.12) 0%, transparent 65%);
+}
+.post-image-box img { width:100%; height:100%; object-fit:cover; }
+
+/* POST BODY */
+.post-body-wrap {
+  max-width:680px;
+  margin:0 auto;
+  padding:52px 60px 60px;
+  border-bottom:1px solid var(--border-dark);
+}
+.post-body { font-size:1rem; line-height:1.85; color:rgba(255,255,255,0.85); }
+.post-body h2 {
+  font-size:1.25rem; font-weight:800; color:#fff;
+  margin:36px 0 14px; letter-spacing:-0.01em;
+}
+.post-body h3 {
+  font-size:1.05rem; font-weight:700; color:#fff;
+  margin:28px 0 10px;
+}
+.post-body p { margin-bottom:18px; }
+.post-body strong { color:#fff; font-weight:700; }
+.post-body a { color:var(--orange); text-decoration:underline; }
+.post-body ul, .post-body ol {
+  margin:0 0 18px 0; padding-right:24px;
+}
+.post-body li { margin-bottom:8px; }
+.post-body br { line-height:2.4; }
+
+/* NAV PREV/NEXT */
+.post-nav {
+  max-width:760px;
+  margin:0 auto;
+  padding:36px 60px;
+  display:flex; gap:16px;
+  border-bottom:1px solid var(--border-dark);
+  background:var(--navy2);
+}
+.post-nav-btn {
+  flex:1; padding:20px 24px; border-radius:14px;
+  background:var(--navy); border:1px solid var(--border-dark);
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:6px;
+  transition:border-color 0.2s, background 0.2s;
+}
+.post-nav-btn:hover { border-color:var(--orange); background:rgba(232,133,74,0.05); }
+.post-nav-btn .nav-direction {
+  font-size:0.65rem; font-weight:700; letter-spacing:0.15em;
+  color:var(--orange); text-transform:uppercase;
+}
+.post-nav-btn .nav-title {
+  font-size:0.88rem; font-weight:700; color:#fff; line-height:1.35;
+}
+
+/* CTA */
+.cta-strip {
+  background:var(--orange-bg);
+  padding:44px 60px;
+  display:flex; align-items:center; justify-content:space-between; gap:40px;
+  border-bottom:1px solid var(--border-orange);
+}
+.cta-strip h3 { font-size:1.4rem; font-weight:800; color:#fff; }
+.cta-strip p { font-size:0.88rem; color:rgba(255,255,255,0.8); margin-top:6px; }
+.cta-btn-white {
+  background:#fff; color:var(--orange-deep);
+  border:none; padding:13px 32px; border-radius:50px;
+  font-size:0.9rem; font-weight:800; cursor:pointer; font-family:inherit;
+  white-space:nowrap; flex-shrink:0; transition:transform 0.2s;
+  text-decoration:none; display:inline-block;
+}
+.cta-btn-white:hover { transform:scale(1.04); }
+
+/* FOOTER */
+footer {
+  background:var(--navy2);
+  padding:32px 60px;
+  display:flex; align-items:center; justify-content:space-between;
+  color:var(--mid-dark); font-size:0.8rem;
+  border-top:1px solid var(--border-dark);
+}
+.footer-logo { font-size:1rem; font-weight:800; color:#fff; }
+.footer-logo span { color:var(--orange); }
+
+/* NOT FOUND */
+.not-found {
+  max-width:760px; margin:0 auto;
+  padding:80px 60px; text-align:center;
+}
+.not-found h2 { font-size:1.5rem; font-weight:800; margin-bottom:16px; }
+.not-found p { color:var(--mid-dark); margin-bottom:28px; }
+.not-found a { color:var(--orange); text-decoration:none; font-weight:700; }
+
+/* MOBILE */
+@media(max-width:768px){
+  nav { padding:14px 20px; }
+  .post-header, .post-image-wrap, .post-body-wrap, .post-nav { padding-right:20px; padding-left:20px; }
+  .post-header { padding-top:36px; }
+  .post-body-wrap { padding-top:32px; padding-bottom:40px; }
+  .post-nav { flex-direction:column; }
+  .cta-strip { flex-direction:column; padding:36px 20px; text-align:center; }
+  footer { flex-direction:column; gap:10px; padding:24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">עומר <span>טייכר</span></a>
+  <a href="/" class="nav-back">→ כל הפוסטים</a>
+</nav>
+
+<div id="post-content"></div>
+
+<div class="cta-strip">
+  <div>
+    <h3>יש לכם שאלה? אני כאן.</h3>
+    <p>25 שנות ניסיון בשירות שלכם — בטלפון, בזום, או בביתכם.</p>
+  </div>
+  <a href="https://omer.tips" class="cta-btn-white">📞 דברו איתי</a>
+</div>
+
+<footer>
+  <div class="footer-logo">עומר <span>טייכר</span></div>
+  <span>© 2025 · כל הזכויות שמורות</span>
+</footer>
+
+<script>
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const container = document.getElementById('post-content');
+
+  if (!id) {
+    container.innerHTML = `<div class="not-found"><h2>פוסט לא נמצא</h2><p>לא צוין מזהה פוסט.</p><a href="/">חזרה לבלוג</a></div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch('posts.json');
+    const data = await res.json();
+    const posts = data.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const idx = posts.findIndex(p => p.id === id);
+
+    if (idx === -1) {
+      container.innerHTML = `<div class="not-found"><h2>פוסט לא נמצא</h2><p>הפוסט המבוקש לא קיים.</p><a href="/">חזרה לבלוג</a></div>`;
+      return;
+    }
+
+    const post = posts[idx];
+    const prev = posts[idx + 1] || null;
+    const next = posts[idx - 1] || null;
+
+    // Update page meta
+    document.getElementById('page-title').textContent = `${post.seo_title || post.title} | עומר טייכר`;
+    document.getElementById('page-desc').setAttribute('content', post.seo_desc || post.excerpt);
+    // og tags
+    const ogTitle = post.seo_title || post.title;
+    const ogDesc  = post.seo_desc  || post.excerpt;
+    const ogUrl   = window.location.href;
+    const ogImage = post.image || '';
+    document.getElementById('og-title').setAttribute('content', ogTitle + ' | עומר טייכר');
+    document.getElementById('og-desc').setAttribute('content', ogDesc);
+    document.getElementById('og-url').setAttribute('content', ogUrl);
+    document.getElementById('og-image').setAttribute('content', ogImage);
+
+    // Image/emoji
+    const imgContent = post.image
+      ? `<img src="${post.image}" alt="${post.title}">`
+      : `<span style="position:relative;z-index:1">${post.emoji}</span>`;
+
+    // Prev/Next nav
+    let navHTML = '';
+    if (prev || next) {
+      navHTML = `<div class="post-nav">`;
+      if (next) {
+        navHTML += `<a class="post-nav-btn" href="post.html?id=${next.id}">
+          <span class="nav-direction">הפוסט הבא ←</span>
+          <span class="nav-title">${next.title}</span>
+        </a>`;
+      }
+      if (prev) {
+        navHTML += `<a class="post-nav-btn" href="post.html?id=${prev.id}">
+          <span class="nav-direction">→ הפוסט הקודם</span>
+          <span class="nav-title">${prev.title}</span>
+        </a>`;
+      }
+      navHTML += `</div>`;
+    }
+
+    container.innerHTML = `
+      <div class="post-header">
+        <div class="post-label">מאמר ${String(idx + 1).padStart(2,'0')} / ${String(posts.length).padStart(2,'0')}</div>
+        <h1>${post.title}</h1>
+        <p class="excerpt">${post.excerpt}</p>
+        <div class="post-meta">
+          <strong>עומר טייכר</strong>
+          <span>·</span><span>${formatDate(post.date)}</span>
+        </div>
+      </div>
+      <div class="post-image-wrap">
+        <div class="post-image-box">${imgContent}</div>
+      </div>
+      <div class="post-body-wrap">
+        <div class="post-body">${post.body}</div>
+      </div>
+      ${navHTML}`;
+  } catch(e) {
+    container.innerHTML = `<div class="not-found"><h2>שגיאה בטעינה</h2><p>לא ניתן לטעון את הפוסט.</p><a href="/">חזרה לבלוג</a></div>`;
+    console.error(e);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
