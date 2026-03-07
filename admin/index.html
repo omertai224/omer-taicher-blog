@@ -275,6 +275,7 @@ function handleSave() {
 }
 
 function cancelEdit() {
+  localStorage.removeItem('admin_editing_post');
   AdminPosts.resetForm();
   document.getElementById('form-section-title').textContent = 'פוסט חדש';
   document.getElementById('form-section-sub').textContent = 'מלא את השדות ולחץ "פרסם"';
@@ -285,6 +286,7 @@ function cancelEdit() {
 function startEdit(postId) {
   const post = AdminPosts.getAll().find(p => p.id === postId);
   if (!post) return;
+  localStorage.setItem('admin_editing_post', postId);
   AdminPosts.fillForm(post);
   document.getElementById('form-section-title').textContent = `עריכת פוסט`;
   document.getElementById('form-section-sub').textContent = post.title;
@@ -408,6 +410,17 @@ function toggleTokenVisibility() {
 // ---- Init ----
 document.getElementById('f-date').value = AdminCore.todayISO();
 updateGhStatus();
+
+// שחזור מצב עריכה אחרי רענון
+const savedEditId = localStorage.getItem('admin_editing_post');
+if (savedEditId) {
+  setTimeout(() => {
+    const posts = AdminPosts.getAll();
+    const post = posts.find(p => p.id === savedEditId);
+    if (post) startEdit(savedEditId);
+    localStorage.removeItem('admin_editing_post');
+  }, 800);
+}
 </script>
 </body>
 </html>
