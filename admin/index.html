@@ -47,12 +47,12 @@
     <div id="section-new-post">
       <div class="section-header">
         <div>
-          <div class="section-title" id="form-section-title">✏️ פוסט חדש</div>
+          <div class="section-title" id="form-section-title">פוסט חדש</div>
           <div class="section-subtitle" id="form-section-sub">מלא את השדות ולחץ "פרסם"</div>
         </div>
         <div style="display:flex;gap:10px">
           <button class="btn btn-secondary" onclick="cancelEdit()">ביטול</button>
-          <button class="btn btn-primary" id="btn-save" onclick="handleSave()">🚀 פרסם פוסט</button>
+          <button class="btn btn-primary" id="btn-save" onclick="handleSave()">פרסם פוסט</button>
         </div>
       </div>
 
@@ -138,6 +138,14 @@
           </div>
         </div>
 
+        <div style="display:flex;gap:10px;justify-content:flex-end;padding:16px 0 4px;">
+          <button class="btn btn-secondary" onclick="cancelEdit()">ביטול</button>
+          <button class="btn btn-primary" onclick="handleSave()" id="btn-save-bottom">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            שמור שינויים
+          </button>
+        </div>
+
       </form>
     </div>
 
@@ -145,7 +153,7 @@
     <div id="section-all-posts" style="display:none">
       <div class="section-header">
         <div>
-          <div class="section-title">📋 כל הפוסטים</div>
+          <div class="section-title">כל הפוסטים</div>
           <div class="section-subtitle" id="posts-list-subtitle">טוען...</div>
         </div>
         <button class="btn btn-primary" onclick="showSection('new-post')">+ פוסט חדש</button>
@@ -158,7 +166,7 @@
     <div id="section-settings" style="display:none">
       <div class="section-header">
         <div>
-          <div class="section-title">⚙️ הגדרות GitHub</div>
+          <div class="section-title">הגדרות GitHub</div>
           <div class="section-subtitle">נדרש לשמירה ופרסום אוטומטי</div>
         </div>
       </div>
@@ -190,13 +198,13 @@
               <input id="s-token" class="form-input" type="password"
                 placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                 style="direction:ltr;text-align:left;padding-left:44px">
-              <button class="token-toggle" onclick="toggleTokenVisibility()" title="הצג/הסתר">👁</button>
+              <button class="token-toggle" onclick="toggleTokenVisibility()" title="הצג/הסתר"></button>
             </div>
             <div class="form-hint">דרוש scope: contents (read + write). <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--orange)">צור טוקן חדש ↗</a></div>
           </div>
 
           <div style="display:flex;gap:10px;align-items:center">
-            <button class="btn btn-primary" onclick="saveSettings()">💾 שמור הגדרות</button>
+            <button class="btn btn-primary" onclick="saveSettings()">שמור הגדרות</button>
             <button class="btn btn-secondary" onclick="testConnection()">🔌 בדוק חיבור</button>
             <span id="settings-spinner" style="display:none"><span class="spinner"></span></span>
           </div>
@@ -268,18 +276,20 @@ function handleSave() {
 
 function cancelEdit() {
   AdminPosts.resetForm();
-  document.getElementById('form-section-title').textContent = '✏️ פוסט חדש';
+  document.getElementById('form-section-title').textContent = 'פוסט חדש';
   document.getElementById('form-section-sub').textContent = 'מלא את השדות ולחץ "פרסם"';
-  document.getElementById('btn-save').textContent = '🚀 פרסם פוסט';
+  document.getElementById('btn-save').textContent = 'פרסם פוסט';
+  document.getElementById('btn-save-bottom').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> פרסם פוסט`;
 }
 
 function startEdit(postId) {
   const post = AdminPosts.getAll().find(p => p.id === postId);
   if (!post) return;
   AdminPosts.fillForm(post);
-  document.getElementById('form-section-title').textContent = `✏️ עריכת פוסט`;
+  document.getElementById('form-section-title').textContent = `עריכת פוסט`;
   document.getElementById('form-section-sub').textContent = post.title;
-  document.getElementById('btn-save').textContent = '💾 שמור שינויים';
+  document.getElementById('btn-save').textContent = 'שמור שינויים';
+  document.getElementById('btn-save-bottom').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> שמור שינויים`;
   showSection('new-post');
   switchTab('edit', document.querySelector('.tab-btn'));
 }
