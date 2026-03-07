@@ -93,6 +93,7 @@ nav {
   margin:24px;
   border-radius:16px;
   border:1px solid var(--border);
+  aspect-ratio:1/1;
 }
 .hero-img::before {
   content:''; position:absolute; inset:0;
@@ -142,7 +143,7 @@ nav {
   display:flex; align-items:center; justify-content:center;
   font-size:4rem; position:relative; overflow:hidden;
   border-right:1px solid var(--border);
-  aspect-ratio:16/9;
+  aspect-ratio:1/1;
   align-self:center;
   margin:20px;
   border-radius:14px;
@@ -242,11 +243,11 @@ footer {
 @media(max-width:768px){
   nav { padding:0 20px; }
   .hero { grid-template-columns:1fr; min-height:auto; }
-  .hero-img { order:-1; margin:20px 20px 0; width:calc(100% - 40px); aspect-ratio:16/9; font-size:4rem; }
+  .hero-img { order:-1; margin:20px 20px 0; width:calc(100% - 40px); aspect-ratio:1/1; font-size:4rem; }
   .hero-content { padding:28px 20px 40px; }
   .posts-header { padding:24px 20px 14px; }
   .post-row { grid-template-columns:1fr; min-height:auto; }
-  .post-row-img { order:-1; margin:16px 16px 0; width:calc(100% - 32px); aspect-ratio:16/9; border-right:none; font-size:3rem; }
+  .post-row-img { order:-1; margin:16px 16px 0; width:calc(100% - 32px); aspect-ratio:1/1; border-right:none; font-size:3rem; }
   .post-row-body { padding:20px 20px 24px; }
   .cta-strip { flex-direction:column; padding:36px 20px; text-align:center; }
   footer { flex-direction:column; gap:10px; padding:24px 20px; }
