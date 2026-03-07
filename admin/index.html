@@ -414,12 +414,13 @@ updateGhStatus();
 // שחזור מצב עריכה אחרי רענון
 const savedEditId = localStorage.getItem('admin_editing_post');
 if (savedEditId) {
-  setTimeout(() => {
-    const posts = AdminPosts.getAll();
+  AdminPosts.load().then(posts => {
     const post = posts.find(p => p.id === savedEditId);
     if (post) startEdit(savedEditId);
     localStorage.removeItem('admin_editing_post');
-  }, 800);
+  }).catch(() => {
+    localStorage.removeItem('admin_editing_post');
+  });
 }
 </script>
 </body>
