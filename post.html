@@ -224,37 +224,38 @@ nav {
   border-bottom:1px solid var(--border);
 }
 .share-intro {
-  font-size:0.95rem;
+  font-size:0.9rem;
   font-weight:600;
   color:var(--navy);
-  margin-bottom:16px;
+  margin-bottom:12px;
   line-height:1.5;
 }
 .share-buttons {
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  display:flex; align-items:center; gap:8px; flex-wrap:nowrap;
 }
 .share-label {
   font-size:0.72rem; font-weight:700; color:var(--text-mid);
-  letter-spacing:0.08em; margin-left:4px; flex-shrink:0;
+  letter-spacing:0.08em; flex-shrink:0; white-space:nowrap;
 }
 .share-btn {
-  display:inline-flex; align-items:center; gap:7px;
-  padding:9px 18px; border-radius:50px;
-  font-size:0.8rem; font-weight:700; font-family:inherit;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 14px; border-radius:50px;
+  font-size:0.75rem; font-weight:700; font-family:inherit;
   border:1px solid var(--border);
   background:#fff; color:var(--navy);
   text-decoration:none; cursor:pointer;
   transition:border-color 0.2s, background 0.2s, color 0.2s;
-  white-space:nowrap;
+  white-space:nowrap; flex-shrink:0;
 }
 .share-btn:hover { border-color:var(--navy); background:var(--navy); color:#fff; }
-.share-btn:hover svg { fill:#fff; }
-.share-btn svg { width:15px; height:15px; fill:var(--navy); flex-shrink:0; transition:fill 0.2s; }
+.share-btn:hover svg { fill:#fff; stroke:#fff; }
+.share-btn svg { width:14px; height:14px; fill:var(--navy); flex-shrink:0; transition:fill 0.2s, stroke 0.2s; }
 .share-btn.copied { border-color:#25D366; background:#25D366; color:#fff; }
 .share-btn.copied svg { fill:#fff; }
 @media(max-width:768px){
   .share-bar { padding:24px 20px; }
-  .share-buttons { gap:8px; }
+  .share-buttons { gap:6px; }
+  .share-btn { padding:6px 11px; font-size:0.72rem; }
 }
 
 /* WHATSAPP JOIN BLOCK */
@@ -464,8 +465,8 @@ async function init() {
           פייסבוק
         </a>
         <button class="share-btn" id="share-copy" onclick="copyLink(this)">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-          העתק קישור
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;fill:none;stroke:var(--navy)"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <span class="copy-label">העתק קישור</span>
         </button>
         </div>
       </div>
@@ -480,6 +481,7 @@ async function init() {
         </a>
       </div>
       ${navHTML}`;
+    initShareButtons();
   } catch(e) {
     container.innerHTML = `<div class="not-found"><h2>שגיאה בטעינה</h2><p>לא ניתן לטעון את הפוסט.</p><a href="/">חזרה לבלוג</a></div>`;
     console.error(e);
@@ -500,12 +502,11 @@ function initShareButtons() {
 function copyLink(btn) {
   navigator.clipboard.writeText(window.location.href).then(() => {
     btn.classList.add('copied');
-    btn.querySelector('svg').style.fill = '#fff';
-    const orig = btn.innerHTML;
-    btn.innerHTML = btn.innerHTML.replace('העתק קישור', 'הקישור הועתק');
+    const label = btn.querySelector('.copy-label');
+    if (label) { label.textContent = 'הועתק'; }
     setTimeout(() => {
-      btn.innerHTML = orig;
       btn.classList.remove('copied');
+      if (label) { label.textContent = 'העתק קישור'; }
     }, 2000);
   });
 }
